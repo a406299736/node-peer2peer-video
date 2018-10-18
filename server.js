@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
   res.sendFile('./index.html')
 });
 app.listen(8128, function () {
-  console.log('Example app listening on port 8080!')
+  console.log('Example app listening on port 8128!')
 });
  
 function sendTo(conn, message){
