@@ -48,7 +48,7 @@ connection.onmessage = function(message){
 };
 connection.onerror = function(err){
 	console.log("Got error", err);
-}
+};
  
 function send(message){
 	if(connectedUser){
@@ -156,9 +156,11 @@ function startConnection(){
  
 function setupPeerConnection(stream){
 	var configuration = {
-        "iceServers": [{
-			 "url": "stun:173.194.202.127:19302"
-		}]
+        iceServers: [
+        	{
+			 urls: "stun:173.194.202.127:19302"
+			}
+		]
 	};
 	yourConnection = new RTCPeerConnection(configuration);
 	yourConnection.addStream(stream);
