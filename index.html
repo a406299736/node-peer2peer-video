@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>基于 HTML5、WebRTC、Node.js 的P2P视频聊天DEMO</title>
+		<style type="text/css">
+			body{
+				margin-top: 15px;
+			}
+			video{
+				background-color: #000;
+				border: 1px solid gray;
+			}
+			.container{
+				position: relative;
+				display: block;
+				margin: 0 auto;
+				width: 500px;
+				height: 500px;
+			}
+			#yours{
+				width: 150px;
+				height: 150px;
+				position: absolute;
+				top: 15px;
+				right: 15px;
+			}
+			#theirs{
+				width: 500px;
+				height: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="login-page" class="page">
+			<h2>Login As</h2>
+			<input type="text" id="username" />
+			<button id="login">Login</button>
+		</div>
+		<div id="call-page" class="page container">
+			<video id="yours" autoplay="autoplay"></video>
+			<video id="theirs" autoplay="autoplay"></video>
+			<input type="text" id="their-username" />
+			<button id="call">Call</button>
+			<button id="hang-up">Hang Up</button>
+		</div>
+		<script type="text/javascript" src="client.js"></script>
+	</body>
+</html>
