@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>基于 HTML5、WebRTC、Node.js 的P2P视频聊天DEMO</title>
+		<title>peer2peer demo</title>
 		<style type="text/css">
 			body{
 				margin-top: 15px;
@@ -33,16 +33,15 @@
 	</head>
 	<body>
 		<div id="login-page" class="page">
-			<h2>Login As</h2>
 			<input type="text" id="username" />
-			<button id="login">Login</button>
+			<button id="login">登录</button>
 		</div>
 		<div id="call-page" class="page container">
 			<video id="yours" autoplay="autoplay"></video>
 			<video id="theirs" autoplay="autoplay"></video>
 			<input type="text" id="their-username" />
-			<button id="call">Call</button>
-			<button id="hang-up">Hang Up</button>
+			<button id="call">连接</button>
+			<button id="hang-up">挂断</button>
 		</div>
 		<script type="text/javascript" src="client.js"></script>
 	</body>

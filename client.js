@@ -21,10 +21,10 @@ loginButton.addEventListener('click', function(){
  
 var connection = new WebSocket('ws://'+document.domain+':7899');
 connection.onopen = function(){
-	console.log('Connected.');
+	console.log('已连接.');
 };
 connection.onmessage = function(message){
-	console.log('Got message', message.data);
+	console.log('message', message.data);
 	var data = JSON.parse(message.data);
 	switch(data.type){
 		case 'login':
@@ -47,7 +47,7 @@ connection.onmessage = function(message){
 	}
 };
 connection.onerror = function(err){
-	console.log("Got error", err);
+	console.log("error", err);
 };
  
 function send(message){
@@ -60,7 +60,7 @@ function send(message){
  
 function onLogin(success){
 	if(success = false){
-		alert('Login failed, Please try a different name,');
+		alert('登录失败，换个账号试试');
 	}else{
 		loginPage.style.display = 'none';
 		callPage.style.display = 'block';
@@ -92,7 +92,7 @@ function onOffer(offer, name){
 			answer: _answer
 		});
 	}, function(err){
-		console.log('An error occur on onOffer.');
+		console.log('呼叫发生错误.');
 	});
 }
  
@@ -114,12 +114,16 @@ function onLeave(){
 }
  
 function hasUserMedia(){
-	return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia || navigator.mediaDevices.getUserMedia || navigator.mozGetUserMedia);
+	return !!(
+		navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia ||
+		navigator.mediaDevices.getUserMedia || navigator.mozGetUserMedia
+	);
 }
  
 function hasRTCPeerConnection(){
 	window.RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
-	window.RTCSessionDescription = window.RTCSessionDescription || window.webkitRTCSessionDescription || window.mozRTCSessionDescription;
+	window.RTCSessionDescription = window.RTCSessionDescription ||
+		window.webkitRTCSessionDescription || window.mozRTCSessionDescription;
 	window.RTCIceCandidate = window.RTCIceCandidate || window.webkitRTCIceCandidate || window.mozRTCIceCandidate;
 	return !!window.RTCPeerConnection;
 }
@@ -130,7 +134,10 @@ var yourVideo = document.querySelector('#yours'),
 	stream;
 function startConnection(){
 	if(hasUserMedia()){
-		navigator._getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia || navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia);
+		navigator._getUserMedia = (
+			navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia ||
+			navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia
+		);
 		navigator._getUserMedia(
 			{
 				video: true,
@@ -144,7 +151,7 @@ function startConnection(){
 					setupPeerConnection(stream);
 				}
 				else{
-					alert('Sorry, your browser does not support WebRTC.');
+					alert('浏览器不支持WebRTC.');
 				}
 			},
 			function(error){

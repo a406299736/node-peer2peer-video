@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
   res.sendFile('./index.html')
 });
 app.listen(8128, function () {
-  console.log('Example app listening on port 8128!')
+  console.log('监听端口 8128!')
 });
  
 function sendTo(conn, message){
@@ -23,12 +23,12 @@ wss.on('connection', function(connection){
 			data = JSON.parse(message);
 		}
 		catch(e){
-			console.log('Error parsing JSON.');
+			console.log('解析错误.');
 			data = {};
 		}
 		switch(data.type){
 			case 'login':
-				console.log('User logged in as', data.name);
+				console.log('用户登录', data.name);
 				if(users[data.name]){
 					sendTo(connection,{
 						type: "login",
@@ -44,7 +44,7 @@ wss.on('connection', function(connection){
 				}
 				break;
 			case 'offer':
-				console.log('Sending offer to', data.name);
+				console.log('发送请求', data.name);
 				var conn = users[data.name];
 				if(conn != null){
 					connection.otherName = data.name;
@@ -56,7 +56,7 @@ wss.on('connection', function(connection){
 				}
 				break;
 			case 'answer':
-				console.log('Sending answer to', data.name);
+				console.log('应答请求', data.name);
 				var conn = users[data.name];
 				if(conn != null){
 					connection.otherName = data.name;
@@ -67,7 +67,7 @@ wss.on('connection', function(connection){
 				}
 				break;
 			case 'candidate':
-				console.log('Sending candidate to', data.name);
+				console.log('发送 candidate to', data.name);
 				var conn = users[data.name];
 				if(conn != null){
 					connection.otherName = data.name;
@@ -112,5 +112,5 @@ wss.on('connection', function(connection){
 	});
 });
 wss.on('listening', function(){
-	console.log('Server started...');
+	console.log('服务开启...');
 });
