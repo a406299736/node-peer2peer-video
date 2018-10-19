@@ -183,7 +183,8 @@ function setupPeerConnection(stream){
 			});
 		}
 	};
-	
+
+
 }
  
 function startPeerConnection(user){
