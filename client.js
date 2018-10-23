@@ -165,7 +165,8 @@ function setupPeerConnection(stream){
 	var configuration = {
         iceServers: [
         	{
-			 urls: "stun:173.194.202.127:19302"
+			 //urls: "stun:173.194.202.127:19302"
+                urls: "stun:120.27.55.146:3478"
 			}
 		]
 	};
@@ -186,7 +187,7 @@ function setupPeerConnection(stream){
 
 
 }
- 
+
 function startPeerConnection(user){
 	connectedUser = user;
 	yourConnection.createOffer(function(_offer){
